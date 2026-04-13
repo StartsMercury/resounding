@@ -19,5 +19,5 @@ modmenu = { module = "com.terraformersmc:modmenu", version.ref = "modmenu" }
 voicechat-api = { module = "de.maxhenkel.voicechat:voicechat-api", version.ref = "voicechat-api" }
 
 [plugins]
-fabric-loom = "fabric-loom:1.7.1"
+fabric-loom = "net.fabricmc.fabric-loom-remap:1.16.1"
 
