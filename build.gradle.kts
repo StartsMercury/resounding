@@ -54,10 +54,14 @@ dependencies {
 }
 
 tasks.withType<ProcessResources> {
-    inputs.property("version", project.version)
+    val data = mapOf(
+        "version" to version,
+    )
+
+    inputs.properties(data)
 
     filesMatching("fabric.mod.json") {
-        expand("version" to project.version)
+        expand(data)
     }
 }
 
