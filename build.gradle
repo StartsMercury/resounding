@@ -4,6 +4,12 @@ plugins {
     id 'maven-publish'
 }
 
+base {
+    group = "dev.thedocruby"
+    archivesName = "resounding"
+    version = "1.0.0-alpha.11"
+}
+
 repositories {
     mavenCentral()
     maven { url "https://maven.shedaniel.me/" }
@@ -11,13 +17,12 @@ repositories {
     maven { url "https://maven.maxhenkel.de/releases" }
 }
 
-sourceCompatibility = JavaVersion.VERSION_21
-targetCompatibility = JavaVersion.VERSION_21
+java {
+    toolchain {
+        languageVersion = libs.versions.java.map(JavaLanguageVersion::of)
+    }
 
-base {
-    group = "dev.thedocruby"
-    archivesName = "resounding"
-    version = "1.0.0-alpha.11"
+    withSourcesJar()
 }
 
 dependencies {
@@ -63,14 +68,6 @@ tasks.withType(JavaCompile).configureEach {
     // see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
     // If Javadoc is generated, this must be specified in that task too.
     it.options.encoding = "UTF-8"
-
-    // Minecraft 1.17 (21w19a) upwards uses Java 16.
-    //noinspection GroovyAssignabilityCheck, GroovyAccessibility
-    it.options.release = 21
-}
-
-java {
-    withSourcesJar()
 }
 
 jar {
