@@ -14,9 +14,11 @@ repositories {
 sourceCompatibility = JavaVersion.VERSION_21
 targetCompatibility = JavaVersion.VERSION_21
 
-archivesBaseName = project.archives_base_name
-version = project.mod_version
-group = project.maven_group
+base {
+    group = "dev.thedocruby"
+    archivesName = "resounding"
+    version = "1.0.0-alpha.11"
+}
 
 dependencies {
     // to change the versions see the gradle.properties file
