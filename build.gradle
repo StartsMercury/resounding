@@ -1,6 +1,6 @@
 plugins {
     // https://maven.fabricmc.net/fabric-loom/fabric-loom.gradle.plugin/
-    id 'fabric-loom' version '1.7.1'
+    alias(libs.plugins.fabric.loom)
     id 'maven-publish'
 }
 
@@ -20,25 +20,25 @@ group = project.maven_group
 
 dependencies {
     // to change the versions see the gradle.properties file
-    minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    minecraft libs.minecraft
+    mappings(variantOf(libs.fabric.yarn) { classifier("v2") })
+    modImplementation libs.fabric.loader
 
     // Fabric API. This is technically optional, but you probably want it anyway.
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    modImplementation libs.fabric.api
 
     // Cloth Config (including Auto Config)
-    modApi("me.shedaniel.cloth:cloth-config-fabric:${project.cloth_config_version}") {
+    modApi(libs.cloth.config) {
         exclude(group: "net.fabricmc", module: "fabric-loader")
         exclude(group: "net.fabricmc.fabric-api")
     }
 
-    modImplementation("de.maxhenkel.voicechat:voicechat-api:${voicechat_api_version}") {
+    modImplementation(libs.voicechat.api) {
         exclude(group: "net.fabricmc", module: "fabric-loader")
         exclude(group: "net.fabricmc.fabric-api")
     }
 
-    modImplementation("com.terraformersmc:modmenu:${project.mod_menu_version}") {
+    modImplementation(libs.modmenu) {
         exclude(group: "net.fabricmc", module: "fabric-loader")
         exclude(group: "net.fabricmc.fabric-api")
     }
